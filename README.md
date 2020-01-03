@@ -44,11 +44,11 @@ play and pause.
 
 This component builds upon the following projects:
 
-- React
-- Bootstrap Icons
-- Storybook
-- Rollup
-- Babel
+- [React](https://reactjs.org/)
+- [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [Storybook](https://storybook.js.org/)
+- [Rollup](https://rollupjs.org)
+- [Babel](https://babeljs.io/)
 
 ## License
 
