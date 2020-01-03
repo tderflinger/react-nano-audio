@@ -1,0 +1,42 @@
+{
+  "name": "react-nano-audio",
+  "version": "1.0.2",
+  "description": "Minimalistic React component for playing audio.",
+  "main": "output/Audio.js",
+  "scripts": {
+    "build": "rollup -c",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "keywords": [
+    "react",
+    "audio",
+    "mp3",
+    "icon"
+  ],
+  "author": "Thomas Derflinger",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@rollup/plugin-image": "^2.0.0",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "babel-loader": "^8.0.6",
+    "bootstrap-icons": "^1.0.0-alpha2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-jsx": "^1.0.3",
+    "rollup-plugin-serve": "^1.0.1"
+  },
+  "dependencies": {}
+}
