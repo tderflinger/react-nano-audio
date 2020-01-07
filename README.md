@@ -13,6 +13,8 @@ Looks like this: ![audio](./src/play.svg)
 Element usage example:
 
 ```jsx
+import Audio from "react-nano-audio";
+
 <Audio audioUrl="https://example.com/test.mp3" iconWidth="18px" iconHeight="18px">
 ```
 
