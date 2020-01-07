@@ -20,7 +20,7 @@ import Audio from "react-nano-audio";
 
 Props:
 
-- audioUrl [string]: the URL of the audio file to play. The audio files need to be publicly accessible.
+- audioUrl [string]: the URL of the audio file to play. The audio file needs to be publicly accessible.
   Tested with MP3 files, but should work with other browser supported audio files too.
 - iconWidth [string]: the width of the icon
 - iconHeight [string]: the height of the icon
