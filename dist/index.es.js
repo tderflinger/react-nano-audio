@@ -76,9 +76,9 @@ const img$1 = 'data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iYmkgYmktcGF1c2UiIHdpZHR
 var PLAY = 0;
 var PAUSE = 1;
 var iconStyle = {
-  cursor: "pointer"
+  cursor: "pointer",
+  margin: "0"
 };
-var sound = new window.Audio();
 /*
 
 Audio
@@ -105,21 +105,18 @@ function (_React$Component) {
     _this.state = {
       iconState: PLAY
     };
+    _this.sound = null;
     _this.play = _this.play.bind(_assertThisInitialized(_this));
     _this.endedListener = _this.endedListener.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Audio, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      sound.src = this.props.audioUrl;
-      sound.addEventListener("ended", this.endedListener);
-    }
-  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      sound.removeEventListener("ended", this.endedListener);
+      if (this.sound) {
+        this.sound.removeEventListener("ended", this.endedListener);
+      }
     }
   }, {
     key: "endedListener",
@@ -129,15 +126,30 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "initializeAudio",
+    value: function initializeAudio() {
+      this.sound = new window.Audio();
+      this.sound.src = this.props.audioUrl;
+      this.sound.addEventListener("ended", this.endedListener);
+    }
+  }, {
     key: "play",
     value: function play() {
       if (this.state.iconState === PLAY) {
-        sound.play();
+        if (!this.sound) {
+          this.initializeAudio();
+        }
+
+        this.sound.play();
         this.setState({
           iconState: PAUSE
         });
       } else {
-        sound.pause();
+        if (!this.sound) {
+          this.initializeAudio();
+        }
+
+        this.sound.pause();
         this.setState({
           iconState: PLAY
         });
@@ -146,13 +158,15 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return React.createElement(React.Fragment, null, React.createElement("img", {
-        style: iconStyle,
+      return React.createElement(React.Fragment, null, React.createElement("span", {
         onClick: this.play,
+        style: iconStyle
+      }, this.props.children, React.createElement("img", {
         src: this.state.iconState === PLAY ? img : img$1,
         width: this.props.iconWidth,
-        height: this.props.iconHeight
-      }));
+        height: this.props.iconHeight,
+        alt: "play audio"
+      })));
     }
   }]);
 

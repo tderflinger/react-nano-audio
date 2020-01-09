@@ -6,10 +6,9 @@ const PLAY = 0;
 const PAUSE = 1;
 
 const iconStyle = {
-  cursor: "pointer"
+  cursor: "pointer",
+  margin: "0"
 };
-
-const sound = new window.Audio();
 
 /*
 
@@ -30,29 +29,39 @@ class Audio extends React.Component {
       iconState: PLAY
     };
 
+    this.sound = null;
     this.play = this.play.bind(this);
     this.endedListener = this.endedListener.bind(this);
   }
 
-  componentDidMount() {
-    sound.src = this.props.audioUrl;
-    sound.addEventListener("ended", this.endedListener);
-  }
-
   componentWillUnmount() {
-    sound.removeEventListener("ended", this.endedListener);
+    if (this.sound) {
+      this.sound.removeEventListener("ended", this.endedListener);
+    }
   }
 
   endedListener() {
     this.setState({ iconState: PLAY });
   }
 
+  initializeAudio() {
+    this.sound = new window.Audio();
+    this.sound.src = this.props.audioUrl;
+    this.sound.addEventListener("ended", this.endedListener);
+  }
+
   play() {
     if (this.state.iconState === PLAY) {
-      sound.play();
+      if (!this.sound) {
+        this.initializeAudio();
+      }
+      this.sound.play();
       this.setState({ iconState: PAUSE });
     } else {
-      sound.pause();
+      if (!this.sound) {
+        this.initializeAudio();
+      }
+      this.sound.pause();
       this.setState({ iconState: PLAY });
     }
   }
@@ -60,13 +69,15 @@ class Audio extends React.Component {
   render() {
     return (
       <>
-        <img
-          style={iconStyle}
-          onClick={this.play}
-          src={this.state.iconState === PLAY ? PlayIcon : PauseIcon}
-          width={this.props.iconWidth}
-          height={this.props.iconHeight}
-        ></img>
+        <span onClick={this.play} style={iconStyle}>
+          {this.props.children}
+          <img
+            src={this.state.iconState === PLAY ? PlayIcon : PauseIcon}
+            width={this.props.iconWidth}
+            height={this.props.iconHeight}
+            alt="play audio"
+          ></img>
+        </span>
       </>
     );
   }

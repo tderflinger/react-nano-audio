@@ -15,7 +15,13 @@ Element usage example:
 ```jsx
 import Audio from "react-nano-audio";
 
-<Audio audioUrl="https://example.com/test.mp3" iconWidth="18px" iconHeight="18px">
+<Audio
+  audioUrl="https://example.com/test.mp3"
+  iconWidth="18px"
+  iconHeight="18px"
+>
+  Play Audio
+</Audio>;
 ```
 
 Props:
