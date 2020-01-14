@@ -1,6 +1,6 @@
 {
   "name": "react-nano-audio",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Minimalistic React component for playing audio.",
   "homepage": "https://github.com/tderflinger/react-nano-audio",
   "main": "dist/index.js",

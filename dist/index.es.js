@@ -107,6 +107,7 @@ function (_React$Component) {
     };
     _this.sound = null;
     _this.play = _this.play.bind(_assertThisInitialized(_this));
+    _this.playKey = _this.playKey.bind(_assertThisInitialized(_this));
     _this.endedListener = _this.endedListener.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -131,6 +132,14 @@ function (_React$Component) {
       this.sound = new window.Audio();
       this.sound.src = this.props.audioUrl;
       this.sound.addEventListener("ended", this.endedListener);
+    }
+  }, {
+    key: "playKey",
+    value: function playKey(evt) {
+      // enter pressed, then play/pause audio
+      if (evt.keyCode === 13) {
+        this.play();
+      }
     }
   }, {
     key: "play",
@@ -159,6 +168,8 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return React.createElement(React.Fragment, null, React.createElement("span", {
+        onKeyDown: this.playKey,
+        tabIndex: "0",
         onClick: this.play,
         style: iconStyle
       }, this.props.children, React.createElement("img", {

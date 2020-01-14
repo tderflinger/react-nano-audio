@@ -4,6 +4,9 @@ A minimalistic audio playing component for React.
 
 The player can start, pause and resume the playing of the audio file.
 
+It has keyboard accessibility built in. The enter key starts and pauses the
+playing of the audio file.
+
 Looks like this: ![audio](./src/play.svg)
 
 ## Installation

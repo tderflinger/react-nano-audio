@@ -31,6 +31,7 @@ class Audio extends React.Component {
 
     this.sound = null;
     this.play = this.play.bind(this);
+    this.playKey = this.playKey.bind(this);
     this.endedListener = this.endedListener.bind(this);
   }
 
@@ -48,6 +49,13 @@ class Audio extends React.Component {
     this.sound = new window.Audio();
     this.sound.src = this.props.audioUrl;
     this.sound.addEventListener("ended", this.endedListener);
+  }
+
+  playKey(evt) {
+    // enter pressed, then play/pause audio
+    if (evt.keyCode === 13) {
+      this.play();
+    }
   }
 
   play() {
@@ -69,7 +77,12 @@ class Audio extends React.Component {
   render() {
     return (
       <>
-        <span onClick={this.play} style={iconStyle}>
+        <span
+          onKeyDown={this.playKey}
+          tabIndex="0"
+          onClick={this.play}
+          style={iconStyle}
+        >
           {this.props.children}
           <img
             src={this.state.iconState === PLAY ? PlayIcon : PauseIcon}
